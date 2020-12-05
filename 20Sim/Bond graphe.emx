@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Model version="4.1" build="4.1.0.5">
+    <Sidops>
+<![CDATA[model 128 184 description '<Description>
+   <Version>4.1</Version>
+<IsMainModel>0</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>C:\Users\zakaria\Documents\Devoir &agrave; la maison Mecatronique II\bond-graph.emx</LibraryPath>
+  <TimeStamp>2019-10-13 19:16:19</TimeStamp>
+</Description>'; type 'Mainmodel-graph' end; implementation bg  submodels   OneJunction 168 144    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>   <LibraryPath>Bond Graph\OneJunction.emx</LibraryPath>  <TimeStamp>2007-9-27 9:51:18</TimeStamp></Description>';    knot OneJunction     ports      power knot duplicatable none p [1];      signal knot out flow [1];     restrictions      causality constraint one_out p;    end;    icon bg     figures      text '1' 168 144 18 bold;    end;    implementation eqequations	sum (direct (p.e)) = 0;	equal (collect (p.f));	flow = first (p.f);implementation_end;   GY 248 144    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>   <LibraryPath>Bond Graph\GY.emx</LibraryPath>  <TimeStamp>2007-9-25 12:2:4</TimeStamp></Description>';    type GY     ports      power in p1;      power out p2;     restrictions      causality constraint equal p1 p2;    end;    icon bg bottom     figures      text 'GY' 248 144 18 bold;    end;    implementation eqparameters	real r = 0.064;equations	p1.e = r * p2.f;	p2.e = r * p1.f;implementation_end;   R 168 80    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>   <LibraryPath>Bond Graph\R.emx</LibraryPath>  <TimeStamp>2007-9-25 12:3:18</TimeStamp></Description>';    type R     ports      power in p;    end;    icon bg bottom     figures      text 'R' 168 80 18 bold;    end;    implementation eqparameters	real r = 3.2;equations						p.e = r * p.f;implementation_end;   I 168 192    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>   <LibraryPath>Bond Graph\I.emx</LibraryPath>  <TimeStamp>2007-9-25 12:2:12</TimeStamp></Description>';    type I     ports      power in p;      signal out state;     restrictions      causality preferred in p;    end;    icon bg bottom     figures      text 'I' 168 192 18 bold;    end;    implementation eqparameters	real i = 3.5e-4;equations    state = int(p.e);    p.f = state / i;implementation_end;   TF 328 144    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>   <LibraryPath>Bond Graph\TF.emx</LibraryPath>  <TimeStamp>2007-9-25 12:4:2</TimeStamp></Description>';    type TF     ports      power in p1;      power out p2;     restrictions      causality constraint not_equal p1 p2;    end;    icon bg bottom     figures      text 'TF' 328 144 18 bold;    end;    implementation eqparameters	real r =     0.0015;equations						p1.e = r * p2.e;	p2.f = r * p1.f;implementation_end;   OneJunction3 384 144    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>   <LibraryPath>Bond Graph\OneJunction.emx</LibraryPath>  <TimeStamp>2007-9-27 9:51:18</TimeStamp></Description>';    knot OneJunction     ports      power knot duplicatable none p [1];      signal knot out flow [1];     restrictions      causality constraint one_out p;    end;    icon bg     figures      text '1' 384 144 18 bold;    end;    implementation eqequations	sum (direct (p.e)) = 0;	equal (collect (p.f));	flow = first (p.f);implementation_end;   Se 80 144    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>   <LibraryPath>Bond Graph\Se.emx</LibraryPath>  <TimeStamp>2007-9-25 12:3:26</TimeStamp></Description>';    type Se     ports      power out p;     restrictions      causality fixed out p;    end;    icon bg bottom     figures      text 'Se' 80 144 18 bold;    end;    implementation eqparameters	real effort = 10;variables	real flow;equations	p.e = effort;	flow = p.f;implementation_end;   v 440 144    description '<Description> <Version>4.0</Version> <IsMainModel>1</IsMainModel> <KeepParameterValues>False</KeepParameterValues> <LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath> <TimeStamp>2007-9-26 12:14:4</TimeStamp> <AllowLibraryUpdate>True</AllowLibraryUpdate></Description>';    type SignalMonitor     ports      signal in input;    end;    icon bg bottom     figures      rectangle 424 128 456 160 fill 15132390;      rectangle 429.7 133.8 450.3 154.6 color 16711680 fill 11776947 width 2;      rectangle 431.8 136.4 447.9 152 color -1 fill 16777215;      line 433.9 138.7 433.9 150 fill 16777215;      line 432 148.4 444.5 148.4 fill 16777215;      line 433.5 148.1 446.4 141.7 color 255 fill 16777215;    end;    implementation eqvariables	real interesting plot;equations	plot = input;   implementation_end;   beq 384 88    description '<Description>
+ <Version>4.0</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <LibraryPath>Bond Graph\R.emx</LibraryPath>
+ <TimeStamp>2007-9-25 12:3:18</TimeStamp>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';    type R     ports      power in p;    end;    icon bg top     figures      text 'R' 384 88 18 bold;    end;    implementation eqparameters	real r =     0.2144;equations						p.e = r * p.f;implementation_end;   Jeq 384 200    description '<Description>
+ <Version>4.0</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <LibraryPath>Bond Graph\I.emx</LibraryPath>
+ <TimeStamp>2007-9-25 12:2:12</TimeStamp>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';    type I     ports      power in p;      signal out state;     restrictions      causality preferred in p;    end;    icon bg bottom     figures      text 'I' 384 200 18 bold;    end;    implementation eqparameters	real i =   544.4444;equations    state = int(p.e);    p.f = state / i;implementation_end;  end;  connections   Se\p => OneJunction\p;   OneJunction\p => GY\p1;   OneJunction\p => I\p;   OneJunction\p => R\p;   OneJunction3\flow -> v\input;   GY\p2 => TF\p1;   TF\p2 => OneJunction3\p;   OneJunction3\p => beq\p;   OneJunction3\p => Jeq\p;  end; implementation_end;]]>
+  </Sidops>
+</Model>
+ <Experiments>
+  <DefaultExperiment><![CDATA[Experiment 1]]>
+</DefaultExperiment>
+  <Experiment>
+   <Name>Experiment 1</Name>
+   <CreatedBy></CreatedBy>
+   <Info></Info>
+   <ExpData>
+    <VersionNumber>4.1</VersionNumber>
+    <ModelProperties></ModelProperties>
+    <Variables>
+     <Parameters></Parameters>
+     <Initials>
+      <Variable>
+       <Name>I2\state_initial</Name>
+       <Value>0</Value>
+      </Variable>
+      <Variable>
+       <Name>I\state_initial</Name>
+       <Value>0</Value>
+      </Variable>
+     </Initials>
+    </Variables>
+    <PlotSpecs>
+     <VarNames>
+      <VarName>time</VarName>
+      <VarName>v\plot</VarName>
+     </VarNames>
+     <Plots>
+      <Plot>
+       <PlotType>GraphPlot</PlotType>
+       <BasePlot>
+        <UseWindowsBGColor>true</UseWindowsBGColor>
+        <BGColor>15790320</BGColor>
+       </BasePlot>
+       <Grid>
+        <DrawGrid>true</DrawGrid>
+        <GridColor>15780518</GridColor>
+        <XTicks>10</XTicks>
+        <YTicks>10</YTicks>
+        <ZTicks>10</ZTicks>
+        <Use3DLook>false</Use3DLook>
+       </Grid>
+       <PlotBGColor>16777215</PlotBGColor>
+       <ShowPlotTitle>true</ShowPlotTitle>
+       <TitlePosition>1</TitlePosition>
+       <PlotTitle>model</PlotTitle>
+       <ShowXValues>true</ShowXValues>
+       <Fonts>
+        <TitleFont>
+         <Name>Arial</Name>
+         <Height>12</Height>
+         <PitchFamily>34</PitchFamily>
+         <Weight>400</Weight>
+         <Italic>0</Italic>
+         <UnderLine>0</UnderLine>
+         <StrikeOut>0</StrikeOut>
+         <Color>0</Color>
+        </TitleFont>
+        <LabelFont>
+         <Name>Arial</Name>
+         <Height>12</Height>
+         <PitchFamily>34</PitchFamily>
+         <Weight>400</Weight>
+         <Italic>0</Italic>
+         <UnderLine>0</UnderLine>
+         <StrikeOut>0</StrikeOut>
+         <Color>0</Color>
+        </LabelFont>
+        <ValuesFont>
+         <Name>Arial</Name>
+         <Height>10</Height>
+         <PitchFamily>34</PitchFamily>
+         <Weight>400</Weight>
+         <Italic>0</Italic>
+         <UnderLine>0</UnderLine>
+         <StrikeOut>0</StrikeOut>
+         <Color>0</Color>
+        </ValuesFont>
+       </Fonts>
+       <SharedXAxis>true</SharedXAxis>
+       <SharedYAxis>true</SharedYAxis>
+       <SharedZAxis>false</SharedZAxis>
+       <XAxes>
+        <Axis>
+         <Minimum>0</Minimum>
+         <Maximum>80</Maximum>
+         <Linear>true</Linear>
+         <Scaling>3</Scaling>
+         <Label>time</Label>
+        </Axis>
+       </XAxes>
+       <YAxes>
+        <Axis>
+         <Minimum>-0.15</Minimum>
+         <Maximum>0.35</Maximum>
+         <Linear>true</Linear>
+         <Scaling>1</Scaling>
+         <Label>v</Label>
+        </Axis>
+       </YAxes>
+       <ZAxes></ZAxes>
+       <Curves>
+        <Curve>
+         <LineColor>16711680</LineColor>
+         <LineStyle>1</LineStyle>
+         <TickColor>16711680</TickColor>
+         <TickStyle>0</TickStyle>
+         <PixelThresshold>1</PixelThresshold>
+         <LineThickness>1</LineThickness>
+         <LineOrder>1</LineOrder>
+         <ShowYValues>true</ShowYValues>
+         <XCurveData>
+     <ShowUnit>true</ShowUnit>
+     <VarName>time</VarName>
+         </XCurveData>
+         <YCurveData>
+     <ShowUnit>true</ShowUnit>
+     <VarName>v\plot</VarName>
+         </YCurveData>
+        </Curve>
+       </Curves>
+       <Legenda>
+        <ShowLegenda>true</ShowLegenda>
+       </Legenda>
+       <StripChartPlots>
+        <DistributState>0</DistributState>
+       </StripChartPlots>
+      </Plot>
+     </Plots>
+     <WindowRectangles virtualDesktopWidth="1366" virtualDesktopHeight="768">
+      <WindowRectangle monitor="0" left="0" top="0" right="1366" bottom="768">0.175695 0.170573 0.775256 0.886719</WindowRectangle>
+     </WindowRectangles>
+    </PlotSpecs>
+    <RunSpecs>
+     <SimulatorSettings>
+      <StartTime>0</StartTime>
+      <FinishTime>10</FinishTime>
+      <Warp>false</Warp>
+      <UseOutputAfterEach>false</UseOutputAfterEach>
+      <OutputAfterEach>0.1</OutputAfterEach>
+      <EventEpsilon>1e-006</EventEpsilon>
+      <AlgebraicTolerance>1e-007</AlgebraicTolerance>
+      <SteadyStateAnalysis>false</SteadyStateAnalysis>
+     </SimulatorSettings>
+     <IntegrationMethods>
+      <IntegrationMethod>
+       <Name>Euler</Name>
+       <StepSize>0.01</StepSize>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>BackwardEuler</Name>
+       <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+       <RelativeTolerance>1e-005</RelativeTolerance>
+       <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+       <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+       <StepSize>0.01</StepSize>
+       <Alpha>1</Alpha>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>AdamsBashforth</Name>
+       <StepSize>0.01</StepSize>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>RungeKutta2</Name>
+       <StepSize>0.01</StepSize>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>RungeKutta4</Name>
+       <StepSize>0.01</StepSize>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>RungeKutta8</Name>
+       <UseInitialStepSize>false</UseInitialStepSize>
+       <InitialStepSize>0.001</InitialStepSize>
+       <UseMaximumStepSize>false</UseMaximumStepSize>
+       <MaximumStepSize>1</MaximumStepSize>
+       <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+       <RelativeTolerance>1e-006</RelativeTolerance>
+       <SafetyFactor>0.9</SafetyFactor>
+       <Factor1>0.33</Factor1>
+       <Factor2>6</Factor2>
+       <Beta>0</Beta>
+       <UseMaxNrSteps>false</UseMaxNrSteps>
+       <MaxNrSteps>100000</MaxNrSteps>
+       <UseStiffDetection>false</UseStiffDetection>
+       <MaxNrStiffnessSteps>1000</MaxNrStiffnessSteps>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>RungeKuttaFehlberg</Name>
+       <UseInitialStepSize>false</UseInitialStepSize>
+       <InitialStepSize>0.001</InitialStepSize>
+       <UseMaximumStepSize>false</UseMaximumStepSize>
+       <MaximumStepSize>1</MaximumStepSize>
+       <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+       <RelativeTolerance>1e-006</RelativeTolerance>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>VodeAdams</Name>
+       <UseInitialStepSize>false</UseInitialStepSize>
+       <InitialStepSize>0.001</InitialStepSize>
+       <UseMaximumStepSize>false</UseMaximumStepSize>
+       <MaximumStepSize>1</MaximumStepSize>
+       <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+       <RelativeTolerance>1e-006</RelativeTolerance>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>BDFMethod</Name>
+       <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+       <RelativeTolerance>1e-005</RelativeTolerance>
+       <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+       <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+       <UseInitialStepSize>false</UseInitialStepSize>
+       <InitialStepSize>0.001</InitialStepSize>
+       <UseMaximumStepSize>false</UseMaximumStepSize>
+       <MaximumStepSize>1</MaximumStepSize>
+       <UseFixedStepSize>false</UseFixedStepSize>
+       <FixedStepSize>0</FixedStepSize>
+      </IntegrationMethod>
+      <IntegrationMethod>
+       <Name>MeBDFiMethod</Name>
+       <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+       <RelativeTolerance>1e-005</RelativeTolerance>
+       <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+       <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+       <UseInitialStepSize>false</UseInitialStepSize>
+       <InitialStepSize>0.001</InitialStepSize>
+       <UseMaximumStepSize>false</UseMaximumStepSize>
+       <MaximumStepSize>1</MaximumStepSize>
+       <UseFixedStepSize>false</UseFixedStepSize>
+       <FixedStepSize>0</FixedStepSize>
+      </IntegrationMethod>
+      <SelectedIntegrationMethod>8</SelectedIntegrationMethod>
+     </IntegrationMethods>
+    </RunSpecs>
+    <MultipleRun>
+     <NrSteps>10</NrSteps>
+     <CopyFromStates>false</CopyFromStates>
+     <JoinParameterVariation>true</JoinParameterVariation>
+     <ClearAfterRun>true</ClearAfterRun>
+     <RedrawAfterRun>false</RedrawAfterRun>
+     <DrawDuringSimulation>true</DrawDuringSimulation>
+     <ActionBeforeOptimization>0</ActionBeforeOptimization>
+     <CompareValue>0</CompareValue>
+     <UseCompareValue>true</UseCompareValue>
+     <MultipleRunType>MultipleRun</MultipleRunType>
+     <Minimize>true</Minimize>
+     <OptimizationVariable></OptimizationVariable>
+     <ResulVarUsage>UseEndValue</ResulVarUsage>
+     <Tolerance>0.001</Tolerance>
+     <OptimizationMethod>BroydonFletcherGoldfarbShanno</OptimizationMethod>
+     <MultipleRunVariables></MultipleRunVariables>
+    </MultipleRun>
+    <ExportData>
+     <WriteAsText>true</WriteAsText>
+     <ReadAsText>true</ReadAsText>
+     <WriteHeader>true</WriteHeader>
+     <ReadHeader>true</ReadHeader>
+     <ReadFilename></ReadFilename>
+     <WriteFilename></WriteFilename>
+     <DoWrite>false</DoWrite>
+     <ExportVariables>
+      <ExportVariable>
+       <VariableName>time</VariableName>
+      </ExportVariable>
+     </ExportVariables>
+     <ImportVariables></ImportVariables>
+    </ExportData>
+    <BreakPoints></BreakPoints>
+   </ExpData>
+  </Experiment>
+ </Experiments>
+</Document>
