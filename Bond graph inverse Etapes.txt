@@ -1,0 +1,7 @@
+
+1- Cahier des charges 
+2- Adéquation 
+3- Spécification 
+4- Séléction 
+5- Validation 
+
